@@ -4,7 +4,6 @@ how you return responses when errors or handled exceptions occur.
 
 ```python
 from starlette.applications import Starlette
-from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import HTMLResponse
 
@@ -13,10 +12,10 @@ HTML_404_PAGE = ...
 HTML_500_PAGE = ...
 
 
-async def not_found(request: Request, exc: HTTPException):
+async def not_found(request: Request, exc: Exception):
     return HTMLResponse(content=HTML_404_PAGE, status_code=exc.status_code)
 
-async def server_error(request: Request, exc: HTTPException):
+async def server_error(request: Request, exc: Exception):
     return HTMLResponse(content=HTML_500_PAGE, status_code=exc.status_code)
 
 
